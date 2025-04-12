@@ -12,13 +12,13 @@ const nameElement = document.getElementById('name');
 const welcomeContainerElement = document.getElementById('welcome-container');
 
 const getUserWelcome = () => {
-  const name = nameElement.value;
-  const newElement = document.createElement('h2');
-  newElement.textContent = `Hello, ${nameElement.value}`;
+	const name = nameElement.value;
+	const newElement = document.createElement('h2');
+	newElement.textContent = `Hello, ${nameElement.value}`;
 
-  if (name.length >= 3) {
-    welcomeContainerElement.append(newElement);
-  }
+	if (name.length >= 3) {
+		welcomeContainerElement.append(newElement);
+	}
 };
 welcomeButtonElement.addEventListener('click', getUserWelcome);
 
@@ -27,6 +27,20 @@ welcomeButtonElement.addEventListener('click', getUserWelcome);
 // Cuando hagas clic en el botón, se generará un encabezado con la etiqueta correspondiente (h1...h6) y el texto "I am an hX", donde X es el número elegido.
 
 // Ejemplo: si eliges 2, se insertará un <h2> con el texto "I am an h2".
+
+const rangeElement = document.getElementById('range');
+const generateButtonElement = document.getElementById('generate-button');
+const headingContainerElement = document.getElementById('heading-container');
+
+const getHeading = () => {
+	const selectedNumber = rangeElement.value;
+	const newHeading = document.createElement(`h${selectedNumber}`);
+	newHeading.textContent = `I am an h${selectedNumber}`;
+
+	headingContainerElement.append(newHeading);
+};
+
+generateButtonElement.addEventListener('click', getHeading);
 
 // # Modo Pro
 
@@ -46,27 +60,46 @@ welcomeButtonElement.addEventListener('click', getUserWelcome);
 
 // Se inserta un li en el historial con un mensaje narrativo personalizado según el resultado.
 
-// const supplies = [
-// 'a medkit',
-// 'a flashlight with half battery',
-// 'some canned food',
-// 'a rusty knife',
-// 'a bottle of clean water',
-// 'a pack of bullets',
-// 'a piece of cloth (could be used as a bandage)',
-// 'a lighter',
-// 'an empty bottle (might be useful)',
-// 'some herbs (smell weird)',
-// 'a broken walkie-talkie',
-// 'a protein bar, still edible',
-// 'a map with strange markings'
-// ];
+const abbyButtonElement = document.getElementById('abby-button');
+const listElement = document.getElementById('supply-history');
 
-// const failureTexts = [
-// 'Nothing but silence and dust. Abby returned empty-handed.',
-// 'No supplies today. The world remains unforgiving.',
-// "She searched everywhere, but luck wasn't on her side."
-// ];
+const supplies = [
+	'a medkit',
+	'a flashlight with half battery',
+	'some canned food',
+	'a rusty knife',
+	'a bottle of clean water',
+	'a pack of bullets',
+	'a piece of cloth (could be used as a bandage)',
+	'a lighter',
+	'an empty bottle (might be useful)',
+	'some herbs (smell weird)',
+	'a broken walkie-talkie',
+	'a protein bar, still edible',
+	'a map with strange markings'
+];
+
+const failureTexts = [
+	'Nothing but silence and dust. Abby returned empty-handed.',
+	'No supplies today. The world remains unforgiving.',
+	"She searched everywhere, but luck wasn't on her side."
+];
+
+let daysCounter = 0;
+
+const getSupplies = () => {
+	daysCounter++;
+	const randomSupplies = Math.floor(Math.random() * supplies.length);
+	const randomFailures = Math.floor(Math.random() * failureTexts.length);
+	const newMessage = document.createElement('li');
+	if (daysCounter % 2 === 0) {
+		newMessage.textContent = `Day ${daysCounter}: ${supplies[randomSupplies]}`;
+	} else {
+		newMessage.textContent = `Day ${daysCounter}: ${failureTexts[randomFailures]}`;
+	}
+	listElement.append(newMessage);
+};
+abbyButtonElement.addEventListener('click', getSupplies);
 
 // 4️⃣ 🏃‍♀️💥 Bego Runner: Modo “Esquivar Coches” ON
 // Descripción del ejercicio:
@@ -82,4 +115,10 @@ welcomeButtonElement.addEventListener('click', getUserWelcome);
 
 // "Bego, please be careful! This car model 🚗 is stalking you! 🚨" (La imagen del coche será el que se repite 3 veces)
 
-// const cars = ['🚗', '🚕', '🚙'];
+const begoButtonElement = document.getElementById('bego-button');
+const trafficElement = document.getElementById('traffic-zone');
+
+const cars = ['🚗', '🚕', '🚙'];
+
+const getCars = () => {};
+begoButtonElement.addEventListener('click', getCars);
