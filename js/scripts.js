@@ -119,6 +119,20 @@ const begoButtonElement = document.getElementById('bego-button');
 const trafficElement = document.getElementById('traffic-zone');
 
 const cars = ['🚗', '🚕', '🚙'];
+const randomCarsContainer = [];
 
-const getCars = () => {};
+const getCars = () => {
+	let carsString = '';
+
+	const randomPosition = Math.floor(Math.random() * cars.length);
+	const randomCar = cars[randomPosition];
+	randomCarsContainer.push(randomCar);
+	//cuando se generen 3 coches, debo meterlos en el string y compararlos
+	console.log(randomCarsContainer);
+	carsString += randomCar;
+
+	const carObtained = document.createElement('p');
+	carObtained.textContent = `${carsString}`;
+	trafficElement.append(carsString);
+};
 begoButtonElement.addEventListener('click', getCars);
